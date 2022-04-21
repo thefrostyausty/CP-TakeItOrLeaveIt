@@ -30,5 +30,20 @@ TBD
 - Sign Out
 
 ## ERD with Wireframes
+- ERD
+![alt text](/Images/ERD.png)
 
-![alt text](/ERD.png)
+- Home PAGE
+![alt text](/Images/HomePage.png)
+
+- Takes (SHOW)
+![alt text](/Images/TAKES.png)
+
+- SIGN-IN/OUT
+![alt text](/Images/SIGNIN.png)
+![alt text](/Images/SIGNOUT.png)
+
+- Profile
+![alt text](/Images/Profile.png)
+
+
