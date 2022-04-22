@@ -5,7 +5,11 @@
 An app that prompts users to give their 'takes' or opinions based on pop culture moments from the past, present & any future predictions for upcoming events as well. 
 
 ## Technologies Used:
-TBD
+ - Python
+ - Django w/ view templates
+ - HTML 
+ - CSS
+ - Materialize
 
 ## User Story:
 **As a 'Public' User:**
@@ -31,7 +35,7 @@ TBD
 
 ## ERD with Wireframes
 - ERD
-![alt text](/Images/ERD.png)
+![alt text](/Images/ERD.jpg)
 
 - Home PAGE
 ![alt text](/Images/HomePage.png)
