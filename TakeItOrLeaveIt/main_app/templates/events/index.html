@@ -1,0 +1,22 @@
+<!-- templates/events/index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TILI: Events</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  </head>
+  <body>
+      <header>Take It Or Leave It</header>
+      <hr />
+      <h4>Events</h4>
+      <hr/>
+    {% for event in events %}
+    <p>{{ event.title }}</p>
+    <p>{{ event.description }}</p>
+    <hr />
+    {% endfor %}
+    <footer>All Rights Reserved, catcollector 2018</footer>
+  </body>
+</html>
