@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TILI: {{ event.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  </head>
+  <body>
+    <h1>Events</h1>
+
+    <h2> Image: {{ event.image }}</h1>
+    <p> Title: {{ event.title }}</p>
+    <p> Description: {{ event.description }}</p>
+  </body>
+</html>

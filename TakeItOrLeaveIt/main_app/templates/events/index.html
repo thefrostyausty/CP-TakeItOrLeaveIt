@@ -13,8 +13,11 @@
       <h4>Events</h4>
       <hr/>
     {% for event in events %}
-    <p>{{ event.title }}</p>
-    <p>{{ event.description }}</p>
+    <a href="/events/{{ event.id }}">
+        <p> {{ event.image }}</p>
+        <p>{{ event.title }}</p>
+        <p>{{ event.description }}</p>
+    </a>
     <hr />
     {% endfor %}
     <footer>All Rights Reserved, catcollector 2018</footer>

@@ -1,5 +1,5 @@
-from curses.ascii import HT
 from django.shortcuts import render
+from .models import Event
 # from django.http import HttpResponse
 # Create your views here.
 
@@ -15,16 +15,22 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
-class Event:
-    def __init__(self, title, description):
-        self.title = title
-        self.description = description
+# class Event:
+#     def __init__(self, image, title, description):
+#         self.image = image
+#         self.title = title
+#         self.description = description
 
-events = [
-    Event('Oscars Slap', 'Will Smith in the heat of the moment, attacks Chris Rock'),
-    Event('Kanye Interrupts Taylor Swift', 'Kanye explains to everyone that Beyoncé had the best video of all time'),
-    Event("'Say My Name' music video debuts with a surprise", "The newest music video released by Destiny's Child showed two new members to the surprise of many")
-]
+# events = [
+#     Event('Oscars Slap', 'Will Smith in the heat of the moment, attacks Chris Rock', 'this is a description'),
+#     Event('Kanye Interrupts Taylor Swift', 'Kanye explains to everyone that Beyoncé had the best video of all time', 'another description'),
+#     Event("'Say My Name' music video debuts with a surprise", "The newest music video released by Destiny's Child showed two new members to the surprise of many", 'descritption')
+# ]
 
 def events_index(request):
+    events = Event.objects.all()
     return render(request, 'events/index.html', {'events': events})
+
+def events_show(request, event_id):
+    event = Event.objects.get(id=event_id)
+    return render(request, 'events/show.html', {'event': event})
