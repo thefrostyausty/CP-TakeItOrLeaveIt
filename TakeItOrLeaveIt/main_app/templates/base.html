@@ -7,14 +7,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   </head>
   <body>
-        <h1>Take It Or Leave It</h1>
-    <hr />
-
+    <nav>
+        <div class="nav-wrapper teal lighten-2">
+            <a href="/events/" class="brand-logo right">Take It Or Leave It</a>
+            <ul id="nav-mobile"class="left hide-on-med-and-down">
+                {% if user.is_authenticated%}
+                <li><a href="/events/create">Add A New Event</a></li>
+                <!-- <li><a href="/cattoys/create">Add A Cat Toy!</a></li> -->
+                <li><a href="/takes">View All Takes!</a></li>
+                <li><a href="/user/{{ user.username }}">Profile</a></li>
+                <li><a href="/logout">Log Out</a></li>
+                {% else %}
+                <li><a href="/login">Log In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <main class="container">
         {% block content %}
         {% endblock %}
+    </main>
 
-      <footer>
-        All Rights Reserved, TILI 2022
-      </footer>
-  </body>
+    <footer class="page-footer">
+        <div class="container col s6 right-align">
+            All Rights Reserved, TILI 2022
+        </div>
+    </footer>
+</body>
 </html>
