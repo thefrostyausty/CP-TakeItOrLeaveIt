@@ -15,6 +15,9 @@
     <h2> Image: {{ event.image }}</h1>
     <p> Title: {{ event.title }}</p>
     <p> Description: {{ event.description }}</p>
+
+    <a href="{% url 'events_update' event.id %}"> Edit Event</a>
+    <a href="{% url 'events_delete' event.id %}"> Delete Event</a>
   </body>
 </html>
 {% endblock %}
