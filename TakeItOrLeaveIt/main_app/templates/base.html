@@ -1,20 +1,20 @@
-{% extends 'base.html' %}
 {% load static %}
-
-{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TILI: {{ event.title }}</title>
+    <title>TILI</title>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   </head>
   <body>
-    <h2>Events</h2>
+        <h1>Take It Or Leave It</h1>
+    <hr />
 
-    <h2> Image: {{ event.image }}</h1>
-    <p> Title: {{ event.title }}</p>
-    <p> Description: {{ event.description }}</p>
+        {% block content %}
+        {% endblock %}
+
+      <footer>
+        All Rights Reserved, TILI 2022
+      </footer>
   </body>
 </html>
-{% endblock %}

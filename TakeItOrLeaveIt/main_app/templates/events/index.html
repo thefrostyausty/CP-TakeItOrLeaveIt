@@ -1,5 +1,8 @@
 <!-- templates/events/index.html -->
+{% extends 'base.html' %}
 {% load static %}
+
+{% block content %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,8 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   </head>
   <body>
-      <header>Take It Or Leave It</header>
-      <hr />
       <h4>Events</h4>
       <hr/>
     {% for event in events %}
@@ -20,6 +21,6 @@
     </a>
     <hr />
     {% endfor %}
-    <footer>All Rights Reserved, catcollector 2018</footer>
   </body>
 </html>
+{% endblock %}
