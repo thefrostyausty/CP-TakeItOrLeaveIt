@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .models import Event
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 # from django.http import HttpResponse
 # Create your views here.
 
@@ -44,6 +45,12 @@ class EventCreate(CreateView):
     fields = '__all__'
     success_url = '/events'
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/events')
+
 
 class EventUpdate(UpdateView):
     model = Event
@@ -57,3 +64,10 @@ class EventUpdate(UpdateView):
 class EventDelete(DeleteView):
     model = Event
     success_url = '/events'
+
+# user profile view
+@login_required
+def profile(request, username):
+    user = User.objects.get(username=username)
+    events = Event.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'events': events})

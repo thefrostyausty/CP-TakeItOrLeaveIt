@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ username }}'s collection:</h1>
+
+{% for event in events %}
+<a href="/{{ event.id }}">
+  <h3>{{ event.title }}</h3>
+</a>
+
+{% endfor %}
+
+{% endblock %}
