@@ -6,7 +6,7 @@ An app that prompts users to give their 'takes' or opinions based on pop culture
 
 ## Technologies Used:
  - Python
- - Django w/ view templates
+ - Django w/ Templates
  - HTML 
  - CSS
  - Materialize
@@ -19,15 +19,13 @@ An app that prompts users to give their 'takes' or opinions based on pop culture
 
 **As a 'Signed In' User**
 - Log in
-- Create a profile which requires:
-    1. Email
-    2. Username
-    3. Password
-- Create 'Takes' or posts which requires:
+- Create an Event which requires:
     1. An Image
     2. Title of moment
-    3. Brief 'take' or opinion of the moment
-- Leave a like or dislike on a 'take' or post
+    3. Brief description of the moment
+- Create 'Takes' or posts which requires:
+    1. An opinion text on said 'Event'
+- Leave a like or dislike on a 'take' or post(V2)
 - Create comments on other users 'takes' or posts
 - Edit a specific post made 
 - Delete a specific post made 
