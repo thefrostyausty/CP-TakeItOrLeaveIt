@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
 # from django.http import HttpResponse
-# Create your views here.
+
 
 # def index(request):
 #     return HttpResponse('<h1>Hello World! /ᐠ｡‸｡ᐟ\ﾉ</h1>')
@@ -64,6 +64,7 @@ class EventUpdate(UpdateView):
         self.object.save()
         return HttpResponseRedirect('/events/' + str(self.object.pk))
 
+@method_decorator(login_required, name='dispatch')
 class EventDelete(DeleteView):
     model = Event
     success_url = '/events'
@@ -86,6 +87,7 @@ class TakeUpdate(UpdateView):
     model = Take
     fields = ['opinion']
 
+@method_decorator(login_required, name='dispatch')
 class TakeDelete(DeleteView):
     model = Take
     success_url = '/takes'
@@ -129,3 +131,22 @@ def login_view(request):
         # if request is a get, we render the login page
         form = LoginForm()
         return render(request, 'login.html', {'form': form})
+
+# log out view
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/events/')
+
+# sign up view
+def signup_view(request):
+    # if the request is a POSt then sign them up
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return HttpResponseRedirect('/user/' + str(user.username))
+    # if the request is a GET then show that form
+    else:
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form})
