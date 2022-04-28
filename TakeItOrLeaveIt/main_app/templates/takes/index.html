@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Takes</h1>
+
+{% for take in takes %}
+    <div class="card">
+        <a href="{% url 'takes_detail' take.id %}">
+            <div class="card-content">
+                <span class="card-title">{{ event.title }}</span>
+                <p>Take: {{ take.opinion }}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+{% endblock %}

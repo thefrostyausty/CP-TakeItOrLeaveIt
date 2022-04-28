@@ -15,7 +15,14 @@
     <h2> Image: {{ event.image }}</h1>
     <p> Title: {{ event.title }}</p>
     <p> Description: {{ event.description }}</p>
-
+  
+    <h3>Takes</h3>
+    {% for take in event.takes.all %}
+      <div>{{ take.opinion }}</div>
+    {% empty %}
+      <p>This Event Has No Takes</p>
+    {% endfor %}
+    
     <a href="{% url 'events_update' event.id %}"> Edit Event</a>
     <a href="{% url 'events_delete' event.id %}"> Delete Event</a>
   </body>

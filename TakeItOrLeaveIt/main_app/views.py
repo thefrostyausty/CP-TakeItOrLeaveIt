@@ -1,10 +1,9 @@
-from curses.ascii import CR
-from sre_constants import SUCCESS
 from django.shortcuts import render
-from .models import Event
+from .models import Event, Take
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # from django.http import HttpResponse
 # Create your views here.
 
@@ -42,7 +41,7 @@ def events_show(request, event_id):
 
 class EventCreate(CreateView):
     model = Event
-    fields = '__all__'
+    fields = ['image', 'title', 'description', 'takes']
     success_url = '/events'
 
     def form_valid(self, form):
@@ -54,7 +53,7 @@ class EventCreate(CreateView):
 
 class EventUpdate(UpdateView):
     model = Event
-    fields = ['image', 'title', 'description']
+    fields = ['image', 'title', 'description', 'takes']
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -71,3 +70,25 @@ def profile(request, username):
     user = User.objects.get(username=username)
     events = Event.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'events': events})
+
+
+class TakeCreate(CreateView):
+    model = Take
+    fields = '__all__'
+
+class TakeUpdate(UpdateView):
+    model = Take
+    fields = ['opinion']
+
+class TakeDelete(DeleteView):
+    model = Take
+    success_url = '/takes'
+
+
+def takes_index(request):
+    takes = Take.objects.all()
+    return render(request, 'takes/index.html', { 'takes': takes })
+
+def takes_detail(request, take_id):
+    take = Take.objects.get(id=take_id)
+    return render(request, 'takes/detail.html', {'take': take})

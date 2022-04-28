@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 # Create your models here.
+class Take(models.Model):
+    opinion = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.opinion
+    
+    def get_absolute_url(self):
+        return reverse('takes_detail', kwargs={'take_id': self.id})
 
 class Event(models.Model):
      # user comes from django, has prebuilt properties and methods
@@ -14,15 +22,8 @@ class Event(models.Model):
     image = models.CharField(max_length=250)
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
+    takes = models.ManyToManyField(Take)
+
 
     def __str__(self):
         return self.title
-
-class Take(models.Model):
-    opinion = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.opinion
-    
-    def get_absolute_url(self):
-        return reverse('takes_detail', kwargs={'take_id': self.id})
