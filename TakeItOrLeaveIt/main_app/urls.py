@@ -15,4 +15,5 @@ urlpatterns = [
     path('takes/create', views.TakeCreate.as_view(), name='takes_create'),
     path('takes/<int:pk>/update/', views.TakeUpdate.as_view(), name='takes_update'),
     path('takes/<int:pk>/delete', views.TakeDelete.as_view(), name='takes_delete'),
+    path('login/', views.login_view, name='login'),
 ]

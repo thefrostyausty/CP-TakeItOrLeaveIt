@@ -4,6 +4,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .forms import LoginForm
+from django.contrib.auth import authenticate, login, logout
+from django.utils.decorators import method_decorator
+from django.contrib.auth.forms import UserCreationForm
 # from django.http import HttpResponse
 # Create your views here.
 
@@ -48,7 +52,7 @@ class EventCreate(CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        return HttpResponseRedirect('/events')
+        return HttpResponseRedirect('/events/' + str(self.object.pk))
 
 
 class EventUpdate(UpdateView):
@@ -72,6 +76,8 @@ def profile(request, username):
     return render(request, 'profile.html', {'username': username, 'events': events})
 
 
+
+
 class TakeCreate(CreateView):
     model = Take
     fields = '__all__'
@@ -92,3 +98,34 @@ def takes_index(request):
 def takes_detail(request, take_id):
     take = Take.objects.get(id=take_id)
     return render(request, 'takes/detail.html', {'take': take})
+
+# login view
+def login_view(request):
+    # we can use the same view for multiple HTTP requests
+    # this can be done with a simple if statement
+    if request.method == 'POST':
+        # handle post request
+        # if its a post we want to authenticate the user with username and pw
+        form = LoginForm(request.POST)
+        # we validate the form data
+        if form.is_valid():
+            # get the username and password and save them to variables
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
+            # using djangoa built in authenticate method
+            user = authenticate(username = u, password = p)
+            # if you found a user with matching credentials
+            if user is not None:
+                # if that user has not been disabled  by admin
+                if user.is_active:
+                    # then we use djangos built in login function 
+                    login(request, user)
+                    return HttpResponseRedirect('/user/' + str(user.username))
+                else: 
+                    print('this account has been disabled')
+            else:
+                print('the username or password is incorrect')
+    else:
+        # if request is a get, we render the login page
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
