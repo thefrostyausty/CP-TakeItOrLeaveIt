@@ -11,5 +11,11 @@
 </a>
 
 {% endfor %}
+<hr />
+{% for take in takes %}
+<a href="/{{ take.id }}">
+  <h3>{{ take.opinion }}</h3>
+</a>
+{% endfor %}
 
 {% endblock %}

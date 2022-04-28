@@ -13,7 +13,6 @@
             <ul id="nav-mobile"class="left hide-on-med-and-down">
                 {% if user.is_authenticated%}
                 <li><a href="/events/create">Add A New Event</a></li>
-                <!-- <li><a href="/cattoys/create">Add A Cat Toy!</a></li> -->
                 <li><a href="/takes">View All Takes!</a></li>
                 <li><a href="/user/{{ user.username }}">Profile</a></li>
                 <li><a href="/logout">Log Out</a></li>

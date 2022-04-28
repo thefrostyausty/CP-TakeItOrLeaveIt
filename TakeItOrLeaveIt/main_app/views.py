@@ -74,6 +74,7 @@ class EventDelete(DeleteView):
 def profile(request, username):
     user = User.objects.get(username=username)
     events = Event.objects.filter(user=user)
+    takes = Take.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'events': events})
 
 
@@ -132,10 +133,6 @@ def login_view(request):
         form = LoginForm()
         return render(request, 'login.html', {'form': form})
 
-# log out view
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/events/')
 
 # sign up view
 def signup_view(request):
@@ -150,3 +147,9 @@ def signup_view(request):
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
+
+
+# log out view
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
