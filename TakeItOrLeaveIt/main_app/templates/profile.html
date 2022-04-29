@@ -5,6 +5,7 @@
 
 <h1>{{ username }}'s collection:</h1>
 
+<h3>My Events</h3>
 {% for event in events %}
 <a href="/events/{{ event.id }}">
   <h3>{{ event.title }}</h3>
@@ -12,8 +13,9 @@
 
 {% endfor %}
 <hr />
+<h3>My Takes</h3>
 {% for take in takes %}
-<a href="/{{ take.id }}">
+<a href="/takes/{{ take.id }}">
   <h3>{{ take.opinion }}</h3>
 </a>
 {% endfor %}

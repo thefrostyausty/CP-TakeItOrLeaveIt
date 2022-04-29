@@ -120,12 +120,16 @@ class CommentDelete(DeleteView):
     model = Comment
     success_url = '/takes'
 
-def comments_index(request):
+def comments_index(request, event_id):
+    if request.method == 'POST':
+        comment = Comment(request.POST)
+    comment.save()
+    takes = Take.objects.filter(event=event_id)
     comment = Comment.objects.all()
-    return render(request, 'takes/index.html', {'comments': comment })
+    return render(request, 'takes/index.html', { 'takes': takes,'comments': comment })
 
 def takes_index(request, event_id):
-    takes = Take.objects.all()
+    takes = Take.objects.filter(event=event_id)
     event = Event.objects.get(id=event_id)
     return render(request, 'takes/index.html', { 'takes': takes, 'event': event })
 
@@ -191,6 +195,6 @@ def profile(request, username):
     user = User.objects.get(username=username)
     events = Event.objects.filter(user=user)
     takes = Take.objects.filter(user=user)
-    comments = Comment.objects.filter(user = user)
-    return render(request, 'profile.html', {'username': username, 'events': events, 'takes': takes, 'comments': comments})
+    # comments = Comment.objects.filter(user = user)
+    return render(request, 'profile.html', {'username': username, 'events': events, 'takes': takes})
     

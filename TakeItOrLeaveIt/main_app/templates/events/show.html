@@ -16,12 +16,7 @@
     <img src="{{ event.image }}">
     <p> Description: {{ event.description }}</p>
   
-    <h3>Takes</h3>
-    {% for take in takes.events_set.all %}
-      <div>{{ take.opinion }}</div>
-    {% empty %}
-      <p>This Event Has No Takes</p>
-    {% endfor %}
+  
 
     <a href="{% url 'takes_index' event.id %}">View the takes for this</a>
     <a href="{% url 'takes_create' event.id %}"> Create a Take</a>
