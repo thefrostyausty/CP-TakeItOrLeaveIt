@@ -17,7 +17,7 @@
     <p> Description: {{ event.description }}</p>
   
     <h3>Takes</h3>
-    {% for take in event.takes.all %}
+    {% for take in takes %}
       <div>{{ take.opinion }}</div>
     {% empty %}
       <p>This Event Has No Takes</p>
