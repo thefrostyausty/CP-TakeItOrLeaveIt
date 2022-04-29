@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Event, Take
+from .models import Event, Take, Comment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -41,12 +41,13 @@ def events_index(request):
 
 def events_show(request, event_id):
     event = Event.objects.get(id=event_id)
-    return render(request, 'events/show.html', {'event': event})
+    takes = Take.objects.filter(event = event_id)
+    return render(request, 'events/show.html', {'event': event, 'takes': takes})
 
 class EventCreate(CreateView):
     model = Event
-    fields = ['image', 'title', 'description', 'takes']
-    success_url = '/events'
+    fields = ['image', 'title', 'description']
+    success_url = '/events/'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -57,7 +58,7 @@ class EventCreate(CreateView):
 
 class EventUpdate(UpdateView):
     model = Event
-    fields = ['image', 'title', 'description', 'takes']
+    fields = ['image', 'title', 'description']
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -69,16 +70,16 @@ class EventDelete(DeleteView):
     model = Event
     success_url = '/events'
 
-# user profile view
-@login_required
-def profile(request, username):
-    user = User.objects.get(username=username)
-    events = Event.objects.filter(user=user)
-    takes = Take.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'events': events})
 
 
+# class Take:
+#     def __init__(self, opinion):
+#         self.opinion = opinion
 
+
+# takes =[ 
+#     Take('sdshdbhsdbhshsbhbdhd')
+# ]
 
 class TakeCreate(CreateView):
     model = Take
@@ -93,6 +94,21 @@ class TakeDelete(DeleteView):
     model = Take
     success_url = '/takes'
 
+class CommentCreate(CreateView):
+    model = Comment
+    fields = '__all__'
+
+class CommentUpdate(UpdateView):
+    model = Comment
+    fields = ['comment']
+
+class CommentDelete(DeleteView):
+    model = Comment
+    success_url = '/takes'
+
+def comments_index(request):
+    comment = Comment.objects.all()
+    return render(request, 'takes/index.html', {'comments': comment })
 
 def takes_index(request):
     takes = Take.objects.all()
@@ -153,3 +169,12 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+# user profile view
+@login_required
+def profile(request, username):
+    user = User.objects.get(username=username)
+    events = Event.objects.filter(user=user)
+    takes = Take.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'events': events, 'takes': takes})
+    
