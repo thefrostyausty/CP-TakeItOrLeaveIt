@@ -83,7 +83,21 @@ class EventDelete(DeleteView):
 
 class TakeCreate(CreateView):
     model = Take
-    fields = '__all__'
+    fields = ['opinion']
+    success_url = '/takes'
+
+    def form_valid(self, form):
+        print('event_id')
+        print(Event.objects.get(pk=self.kwargs['event_id']))
+        # creating an object from the form
+        self.object = form.save(commit=False)
+        # adding a user to the objer
+        self.object.user = self.request.user
+        self.object.event = Event.objects.get(pk=self.kwargs['event_id'])
+        # saving the object in the database
+        self.object.save()
+        # redirecting to the main index page
+        return HttpResponseRedirect('/takes')
 
 class TakeUpdate(UpdateView):
     model = Take

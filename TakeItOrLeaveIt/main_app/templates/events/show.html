@@ -17,12 +17,17 @@
     <p> Description: {{ event.description }}</p>
   
     <h3>Takes</h3>
-    {% for take in takes %}
+    {% for take in takes.events_set.all %}
       <div>{{ take.opinion }}</div>
     {% empty %}
       <p>This Event Has No Takes</p>
     {% endfor %}
 
+    {% if user.is_authenticated and event.user == user %}
+    <a href="{% url 'takes_detail' takes.id %}">View the takes for this</a>
+    {% else %}
+    <a href="{% url 'takes_create' event.id %}"> Create a Take</a>
+    {% endif %}
   
     <a href="{% url 'events_update' event.id %}"> Edit Event</a>
     <a href="{% url 'events_delete' event.id %}"> Delete Event</a>

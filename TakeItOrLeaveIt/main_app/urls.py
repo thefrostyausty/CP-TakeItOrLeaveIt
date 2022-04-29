@@ -19,7 +19,7 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('takes/', views.takes_index, name='takes_index'),
     path('takes/<int:take_id>/', views.takes_detail, name='takes_detail'),
-    path('takes/create', views.TakeCreate.as_view(), name='takes_create'),
+    path('events/<int:event_id>/takes/create', views.TakeCreate.as_view(), name='takes_create'),
     path('takes/<int:pk>/update/', views.TakeUpdate.as_view(), name='takes_update'),
     path('takes/<int:pk>/delete', views.TakeDelete.as_view(), name='takes_delete'),
 ]

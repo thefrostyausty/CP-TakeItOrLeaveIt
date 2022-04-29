@@ -7,12 +7,8 @@
     <div class="col s6">
         <div class="card">
             <div class="card-content">
-                {% for event in take.event_set.all %}
-                    <span class="card-title">{{ event.title }}</span>
+                    <span class="card-title">{{ take.event.title }}</span>
                     <p>Take: {{ take.opinion }}</p>
-                {% empty %}
-                    <div> There is no Event or Take</div>
-                {% endfor %}
             </div>
             <div class="card-action">
                 <a href="{% url 'takes_update' take.id %}">Edit</a>
