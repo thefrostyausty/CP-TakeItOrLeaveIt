@@ -23,14 +23,13 @@
       <p>This Event Has No Takes</p>
     {% endfor %}
 
-    {% if user.is_authenticated and event.user == user %}
-    <a href="{% url 'takes_detail' takes.id %}">View the takes for this</a>
-    {% else %}
+    <a href="{% url 'takes_index' event.id %}">View the takes for this</a>
     <a href="{% url 'takes_create' event.id %}"> Create a Take</a>
+    
+    {% if user.is_authenticated and event.user == user %}
+      <a href="{% url 'events_update' event.id %}"> Edit Event</a>
+      <a href="{% url 'events_delete' event.id %}"> Delete Event</a>
     {% endif %}
-  
-    <a href="{% url 'events_update' event.id %}"> Edit Event</a>
-    <a href="{% url 'events_delete' event.id %}"> Delete Event</a>
   </body>
 </html>
 {% endblock %}

@@ -124,9 +124,10 @@ def comments_index(request):
     comment = Comment.objects.all()
     return render(request, 'takes/index.html', {'comments': comment })
 
-def takes_index(request):
+def takes_index(request, event_id):
     takes = Take.objects.all()
-    return render(request, 'takes/index.html', { 'takes': takes })
+    event = Event.objects.get(id=event_id)
+    return render(request, 'takes/index.html', { 'takes': takes, 'event': event })
 
 def takes_detail(request, take_id):
     take = Take.objects.get(id=take_id)
@@ -190,5 +191,6 @@ def profile(request, username):
     user = User.objects.get(username=username)
     events = Event.objects.filter(user=user)
     takes = Take.objects.filter(user=user)
-    return render(request, 'profile.html', {'username': username, 'events': events, 'takes': takes})
+    comments = Comment.objects.filter(user = user)
+    return render(request, 'profile.html', {'username': username, 'events': events, 'takes': takes, 'comments': comments})
     
