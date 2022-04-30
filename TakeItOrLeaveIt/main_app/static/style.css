@@ -3,5 +3,17 @@ h1 {
 }
 
 body{
-    background-color: blanchedalmond;
+    background-color: whitesmoke;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+img {
+    width: auto;
+    height: auto;
+}
+
+main {
+    flex: 1 0 auto;
+  }
+

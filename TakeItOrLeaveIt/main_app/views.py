@@ -121,12 +121,8 @@ class CommentDelete(DeleteView):
     success_url = '/takes'
 
 def comments_index(request, event_id):
-    if request.method == 'POST':
-        comment = Comment(request.POST)
-    comment.save()
     takes = Take.objects.filter(event=event_id)
-    comment = Comment.objects.all()
-    return render(request, 'takes/index.html', { 'takes': takes,'comments': comment })
+    return render(request, 'takes/index.html', { 'takes': takes})
 
 def takes_index(request, event_id):
     takes = Take.objects.filter(event=event_id)
@@ -134,8 +130,12 @@ def takes_index(request, event_id):
     return render(request, 'takes/index.html', { 'takes': takes, 'event': event })
 
 def takes_detail(request, take_id):
+    if request.method == 'POST':
+        comment = Comment.objects.all(take=take_id)
+        comments = Comment(request.POST)
+    comment.save()
     take = Take.objects.get(id=take_id)
-    return render(request, 'takes/detail.html', {'take': take})
+    return render(request, 'takes/detail.html', {'take': take, 'comments': comments})
 
 # login view
 def login_view(request):

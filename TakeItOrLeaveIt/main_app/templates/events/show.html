@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   </head>
   <body>
-    <h3> My Events</h3>
-
+    <a class="right waves-effect waves-light btn blue lighten-2" href="/events/">All Events</a>
     <h4>{{ event.title }}</h4>
-    <img src="{{ event.image }}">
+    <img class="responsive-img" src="{{ event.image }}">
     <p> Description: {{ event.description }}</p>
   
   
