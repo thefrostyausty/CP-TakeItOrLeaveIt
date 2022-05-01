@@ -8,12 +8,17 @@ body{
     min-height: 100vh;
     flex-direction: column;
 }
-img {
+img{
     width: auto;
-    height: auto;
+    max-height: 25em;
 }
 
 main {
     flex: 1 0 auto;
-  }
+}
+
+.card{
+    max-width: 15em;
+    
+}
 

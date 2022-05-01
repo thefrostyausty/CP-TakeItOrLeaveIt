@@ -31,6 +31,15 @@ class Take(models.Model):
     def __str__(self):
         return self.opinion
     
+    def as_dict(self):
+        # returns a dictionary of my Take model
+        return{
+            'id': self.id,
+            'opinion': self.opinion,
+            'user': self.user,
+            'event': self.event,
+        }
+    
     def get_absolute_url(self):
         return reverse('takes_detail', kwargs={'take_id': self.id})
 

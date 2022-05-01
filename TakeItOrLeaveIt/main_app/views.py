@@ -130,12 +130,14 @@ def takes_index(request, event_id):
     return render(request, 'takes/index.html', { 'takes': takes, 'event': event })
 
 def takes_detail(request, take_id):
-    if request.method == 'POST':
-        comment = Comment.objects.all(take=take_id)
-        comments = Comment(request.POST)
-    comment.save()
+    # if request.method == 'POST':
+    #     comment = Comment.objects.all(take=take_id)
+    #     comments = Comment(request.POST)
+    # comment.save()
     take = Take.objects.get(id=take_id)
-    return render(request, 'takes/detail.html', {'take': take, 'comments': comments})
+    print('this is the take')
+    print(take.as_dict)
+    return render(request, 'takes/detail.html', {'take': take})
 
 # login view
 def login_view(request):
