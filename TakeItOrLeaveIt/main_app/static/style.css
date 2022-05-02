@@ -3,10 +3,13 @@ h1 {
 }
 
 body{
+    font-family: 'Anton', sans-serif;
     background-color: whitesmoke;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 img{
     width: auto;
@@ -19,6 +22,6 @@ main {
 
 .card{
     max-width: 15em;
-    
-}
+    flex-wrap: wrap;
 
+}

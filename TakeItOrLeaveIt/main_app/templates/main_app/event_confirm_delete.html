@@ -3,10 +3,10 @@
 {% block content %}
   <h1>Delete this Event?</h1>
 
-  <p>Are you sure you want to delete this Event: {{ event }}?</p>
+  <h3>Are you sure you want to delete this Event: "{{ event }}"?</h3>
 
   <form action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Yes, delete.">
+    <input class="btn-large waves-effect waves-light red darken-3" type="submit" value="Yes, delete.">
   </form>
 {% endblock %}

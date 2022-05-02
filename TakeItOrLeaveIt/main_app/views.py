@@ -18,7 +18,7 @@ from django.contrib.auth.forms import UserCreationForm
 #     return HttpResponse('<h1>I am Austin the developer</h1>')
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'events/index.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -97,7 +97,7 @@ class TakeCreate(CreateView):
         # saving the object in the database
         self.object.save()
         # redirecting to the main index page
-        return HttpResponseRedirect('/takes')
+        return HttpResponseRedirect('/events/' + str(self.kwargs['event_id']) + '/takes')
 
 class TakeUpdate(UpdateView):
     model = Take
@@ -106,7 +106,8 @@ class TakeUpdate(UpdateView):
 @method_decorator(login_required, name='dispatch')
 class TakeDelete(DeleteView):
     model = Take
-    success_url = '/takes'
+    success_url = '/events'
+
 
 class CommentCreate(CreateView):
     model = Comment
@@ -199,4 +200,3 @@ def profile(request, username):
     takes = Take.objects.filter(user=user)
     # comments = Comment.objects.filter(user = user)
     return render(request, 'profile.html', {'username': username, 'events': events, 'takes': takes})
-    

@@ -3,21 +3,25 @@
 
 {% block content %}
 
-<h1>{{ username }}'s collection:</h1>
+  <h1>{{ username }}'s collection:</h1>
+  <h3>My Events</h3>
+  <div class="collection">
+    {% for event in events %}
+    <a class="collection-item blue-text" href="/events/{{ event.id }}">
+      <h5>{{ event.title }}</h5>
+    </a>
+    {% endfor %}
+  </div>
+  <hr />
+  <h3>My Takes</h3>
+  <div class="collection">
+    {% for take in takes %}
+    <a class="collection-item amber-text" href="/takes/{{ take.id }}">
+      <h5>{{ take.opinion }}</h5>
+    </a>
+    {% endfor %}
+  </div>
 
-<h3>My Events</h3>
-{% for event in events %}
-<a href="/events/{{ event.id }}">
-  <h3>{{ event.title }}</h3>
-</a>
 
-{% endfor %}
-<hr />
-<h3>My Takes</h3>
-{% for take in takes %}
-<a href="/takes/{{ take.id }}">
-  <h3>{{ take.opinion }}</h3>
-</a>
-{% endfor %}
 
 {% endblock %}

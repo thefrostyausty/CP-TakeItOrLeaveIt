@@ -17,12 +17,19 @@
   
   
 
-    <a href="{% url 'takes_index' event.id %}">View the takes for this</a>
-    <a href="{% url 'takes_create' event.id %}"> Create a Take</a>
+    <a 
+    class="btn-large waves-effect waves-light blue" 
+    href="{% url 'takes_create' event.id %}">Add Take</a>
+    <a class="btn-large waves-effect waves-light amber darken-3"
+    href="{% url 'takes_index' event.id %}">View Take</a>
     
     {% if user.is_authenticated and event.user == user %}
-      <a href="{% url 'events_update' event.id %}"> Edit Event</a>
-      <a href="{% url 'events_delete' event.id %}"> Delete Event</a>
+      <a 
+      class="btn-large waves-effect waves-light amber lighten-2"
+      href="{% url 'events_update' event.id %}"> Edit Event</a>
+      <a
+      class="btn-large waves-effect waves-light red darken-3" 
+      href="{% url 'events_delete' event.id %}"> Delete Event</a>
     {% endif %}
   </body>
 </html>
