@@ -121,9 +121,15 @@ class CommentDelete(DeleteView):
     model = Comment
     success_url = '/takes'
 
-def comments_index(request, event_id):
-    takes = Take.objects.filter(event=event_id)
-    return render(request, 'takes/index.html', { 'takes': takes})
+def comments_index(request, take_id):
+    if request.method == 'POST':
+        comments = Comment.objects.filter(take=take_id)
+        comments.save()
+        print('***** this is the comment')
+        print(comments)
+    else:
+        print('****** this was not hit *****')
+    return render(request, 'comments/index.html', {'comments': comments})
 
 def takes_index(request, event_id):
     takes = Take.objects.filter(event=event_id)

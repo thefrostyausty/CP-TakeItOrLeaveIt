@@ -16,7 +16,7 @@
             <ul id="nav-mobile"class="right hide-on-med-and-down">
                 {% if user.is_authenticated%}
                 <li><a href="/events/create">Add New Event</a></li>
-                <li><a href="/user/{{ user.username }}">My Collection</a></li>
+                <li><a href="/user/{{ user.username }}">{{ user.username }}'s Collection</a></li>
                 <li><a href="/logout">Log Out</a></li>
                 {% else %}
                 <li><a href="/login">Log In</a></li>

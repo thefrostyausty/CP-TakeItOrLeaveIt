@@ -21,7 +21,9 @@
     class="btn-large waves-effect waves-light blue" 
     href="{% url 'takes_create' event.id %}">Add Take</a>
     <a class="btn-large waves-effect waves-light amber darken-3"
-    href="{% url 'takes_index' event.id %}">View Take</a>
+    href="{% url 'takes_index' event.id %}">View Takes</a>
+    <a class="btn-large waves-effect waves-light cyan accent-4"
+    href="">View Comments</a>
     
     {% if user.is_authenticated and event.user == user %}
       <a 

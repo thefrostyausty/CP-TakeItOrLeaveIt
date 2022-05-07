@@ -10,6 +10,8 @@
     <a class="collection-item blue-text" href="/events/{{ event.id }}">
       <h5>{{ event.title }}</h5>
     </a>
+    {% empty %}
+    <a class="btn-flat disabled">You haven't made any events!</a>
     {% endfor %}
   </div>
   <hr />
@@ -19,6 +21,8 @@
     <a class="collection-item amber-text" href="/takes/{{ take.id }}">
       <h5>{{ take.opinion }}</h5>
     </a>
+    {% empty %}
+      <a class="btn-flat disabled">You haven't made any takes!</a>
     {% endfor %}
   </div>
 

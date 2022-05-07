@@ -7,8 +7,8 @@
     <div class="card">
         <a href="{% url 'takes_detail' take.id %}">
             <div class="card-content">
-                <span class="card-title">{{ event.title }}</span>
-                <p>Take: {{ take.opinion }}</p>
+                <span class="card-title">{{ event.title }} by: {{ event.user.username }}</span>
+                <p class="amber-text lighten-3">{{ take.user.username }}'s Take: {{ take.opinion }}</p>
             </div>
         </a>
     </div>

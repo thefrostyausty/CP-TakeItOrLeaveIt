@@ -46,7 +46,7 @@ class Take(models.Model):
 class Comment(models.Model):
     comment = models.CharField(max_length=250)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    take = models.ForeignKey(Take, on_delete=models.CASCADE, related_name='comments')
+    take = models.ForeignKey(Take, on_delete=models.CASCADE, related_name='takes')
 
     def __str__(self):
         return self.comment

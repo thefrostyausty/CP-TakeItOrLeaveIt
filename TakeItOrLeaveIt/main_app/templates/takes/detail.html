@@ -8,9 +8,9 @@
         <div class="card ">
             <div class="card-content">
                     <span class="card-title">{{ take.event.title }}</span>
-                    <p>Take: {{ take.opinion }}</p>
+                    <p>{{ take.user.username }}'s Take: {{ take.opinion }}</p>
             </div>
-            {% if user.is_authenticated and take.event.user == user %}
+            {% if user.is_authenticated and take.user == user %}
             <div class="card-action">
                 <a href="{% url 'takes_update' take.id %}">Edit</a>
                 <a href="{% url 'takes_delete' take.id %}">Delete</a>
@@ -18,7 +18,7 @@
             {% endif %}
         </div>
         {% if user.is_authenticated%}
-        <form type="submit" action="" method = "POST" > 
+        <form type="submit" action="/takes/{{ take.id }}/comments/" method = "POST"> 
             {% csrf_token %}
             <input  id="comment" type="text"  placeholder="Leave a Comment" autofocus="autofocus" > 
             <button class="btn-large waves-effect waves-light blue lighten-3" id="submit" type="submit" >Post</button> 
