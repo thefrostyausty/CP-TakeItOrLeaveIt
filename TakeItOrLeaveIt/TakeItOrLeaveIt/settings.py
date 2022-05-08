@@ -27,7 +27,9 @@ SECRET_KEY = '6sue=932!nt-t)52o#7z=ny&knx(ql$d9u8sh71ne3filazh(d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://takeit-or-leaveit.herokuapp.com',
+'localhost',
+'127.0.0.1']
 
 
 # Application definition
